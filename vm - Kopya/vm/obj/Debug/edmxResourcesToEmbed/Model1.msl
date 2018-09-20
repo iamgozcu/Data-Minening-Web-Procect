@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="KullanicilerModelStoreContainer" CdmEntityContainer="KullanicilerEntities1">
+    <EntitySetMapping Name="Kisiler">
+      <EntityTypeMapping TypeName="KullanicilerModel.Kisiler">
+        <MappingFragment StoreEntitySet="Kisiler">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="OkulID" ColumnName="OkulID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OkulBlg">
+      <EntityTypeMapping TypeName="IsTypeOf(KullanicilerModel.OkulBlg)">
+        <MappingFragment StoreEntitySet="OkulBlg">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="OkulAdı" ColumnName="OkulAdı" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Table">
+      <EntityTypeMapping TypeName="KullanicilerModel.Table">
+        <MappingFragment StoreEntitySet="Table">
+          <ScalarProperty Name="OlusturmaTarihi" ColumnName="OlusturmaTarihi" />
+          <ScalarProperty Name="AnketId" ColumnName="AnketId" />
+          <ScalarProperty Name="CevapId" ColumnName="CevapId" />
+          <ScalarProperty Name="SoruId" ColumnName="SoruId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

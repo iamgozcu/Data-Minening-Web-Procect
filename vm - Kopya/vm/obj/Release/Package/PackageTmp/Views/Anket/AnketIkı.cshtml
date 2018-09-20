@@ -1,0 +1,149 @@
+﻿
+@{
+    ViewBag.Title = "AnketIkı";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-warning">Anket Soruları-2</h2>
+
+<p class="jumbotron" style="background-color:antiquewhite;"><span class="glyphicon glyphicon-exclamation-sign">DİKKAT</span><br />Aşağıdaki soruları ÇOK İYİ , İYİ , KÖTÜ , ÇOK KÖTÜ olacak şekilde , lütfen butonlar yardımı seçebilirsin dostum.</p>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<style>
+    .active {
+        background: #000 !important;
+        color: #fff !important;
+    }
+</style>
+
+<script type="text/javascript">
+    $(function () {
+        $(".soru1 button").click(function () {
+            var soru = $(this).data("soru");
+            var cevap = $(this).data("cevap");
+            var auth = @DateTime.Now.ToString("dd-MM-yyyy-hh-mm-ss");
+            var hh = $(this).index();
+
+            $.ajax({
+                type: "POST",
+                url: "../Kısıler/SoruCevap",
+                data: '{soru:"' + soru + '", cevap : "' + cevap + '", auth : "'+ auth +'"}',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'JSON',
+                success: function (cevap) {
+                    if (cevap == 1) {
+                        $("body > div.container.body-content > div > div > button:nth-child("+(hh+1) +")").addClass("active");
+                    } else {
+                        alert("Bu soruya cevap verdiniz");
+                    }
+                }, error: function (cevap) {
+                    alert("Ajax isteği başarısız...");
+                }
+            });
+
+        })
+    });
+</script>
+
+
+<div class="panel panel-primary">
+    @*<div class="panel-heading">Anket Soruları</div>*@
+
+    <div class="soru1">
+        <div class="panel body">
+            <h4 style="text-align:center;" class="text-success padding-top:30px;">
+                Kendinizi üniverstenizin bir parçası olarak görüyor musunusuz ?
+            </h4>
+        </div>
+        <button data-soru="1" data-cevap="4" type="button" class="btn btn-primary col-lg-3 "><span class="glyphicon glyphicon-ok"></span>ÇOK İYİ</button>
+        <button data-soru="1" data-cevap="3" type="button" class="btn btn-success col-lg-3"><span class="glyphicon glyphicon-ok-circle"></span>İYİ</button>
+        <button data-soru="1" data-cevap="2" type="button" class="btn btn-warning col-lg-3"><span class="glyphicon glyphicon-remove"></span>KÖTÜ</button>
+        <button data-soru="1" data-cevap="1" type="button" class="btn btn-danger col-lg-3"><span class="glyphicon glyphicon-exclamation-sign"></span> ÇOK KÖTÜ</button>
+        <div class="panel body">
+            <h4 style="text-align:center; padding-top:30px;" class="text-success">
+                Kütüphanenin açılış ve kapanış saatleri sizce iyimi ?
+            </h4>
+        </div>
+        <button data-soru="2" data-cevap="4" type="button" class="btn btn-primary col-lg-3 "><span class="glyphicon glyphicon-ok"></span>ÇOK İYİ</button>
+        <button data-soru="2" data-cevap="3" type="button" class="btn btn-success col-lg-3"><span class="glyphicon glyphicon-ok-circle"></span>İYİ</button>
+        <button data-soru="2" data-cevap="2" type="button" class="btn btn-warning col-lg-3"><span class="glyphicon glyphicon-remove"></span>KÖTÜ</button>
+        <button data-soru="2" data-cevap="1" type="button" class="btn btn-danger col-lg-3"><span class="glyphicon glyphicon-exclamation-sign"></span> ÇOK KÖTÜ</button>
+        <div class="panel body">
+            <h4 style="text-align:center; padding-top:30px;" class="text-success">
+                Okula bulunduğu konumun iyi olduğunu düşünüyormusunuz ?
+            </h4>
+        </div>
+        <button data-soru="3" data-cevap="4" type="button" class="btn btn-primary col-lg-3 "><span class="glyphicon glyphicon-ok"></span>ÇOK İYİ</button>
+        <button data-soru="3" data-cevap="3" type="button" class="btn btn-success col-lg-3"><span class="glyphicon glyphicon-ok-circle"></span>İYİ</button>
+        <button data-soru="3" data-cevap="2" type="button" class="btn btn-warning col-lg-3"><span class="glyphicon glyphicon-remove"></span>KÖTÜ</button>
+        <button data-soru="3" data-cevap="1" type="button" class="btn btn-danger col-lg-3"><span class="glyphicon glyphicon-exclamation-sign"></span> ÇOK KÖTÜ</button>
+        <div class="panel body">
+            <h4 style="text-align:center; padding-top:30px;" class="text-success">
+                Üniversteyi başka öğrencilere tavsiye edermisiniz ?
+            </h4>
+        </div>
+        <button data-soru="4" data-cevap="4" type="button" class="btn btn-primary col-md-3 "><span class="glyphicon glyphicon-ok"></span>ÇOK İYİ</button>
+        <button data-soru="4" data-cevap="3" type="button" class="btn btn-success col-md-3"><span class="glyphicon glyphicon-ok-circle"></span>İYİ</button>
+        <button data-soru="4" data-cevap="2" type="button" class="btn btn-warning col-md-3"><span class="glyphicon glyphicon-remove"></span>KÖTÜ</button>
+        <button data-soru="4" data-cevap="1" type="button" class="btn btn-danger col-md-3"><span class="glyphicon glyphicon-exclamation-sign"></span>ÇOK KÖTÜ</button>
+        <div class="panel body">
+            <h4 style="text-align:center; padding-top:30px;" class="text-success">
+                Bölüm içi seçmeli derslerin çeşitlilik düzeyindemi?
+            </h4>
+        </div>
+        <button data-soru="5" data-cevap="4" type="button" class="btn btn-primary col-md-3 "><span class="glyphicon glyphicon-ok"></span>ÇOK İYİ</button>
+        <button data-soru="5" data-cevap="3" type="button" class="btn btn-success col-md-3"><span class="glyphicon glyphicon-ok-circle"></span>İYİ</button>
+        <button data-soru="5" data-cevap="2" type="button" class="btn btn-warning col-md-3"><span class="glyphicon glyphicon-remove"></span>KÖTÜ</button>
+        <button data-soru="5" data-cevap="1" type="button" class="btn btn-danger col-md-3"><span class="glyphicon glyphicon-exclamation-sign"></span>ÇOK KÖTÜ</button>
+        <div class="panel body">
+            <h4 style="text-align:center; padding-top:30px;" class="text-success">
+                Üniverstenin temizlik durumu sizce iyimi ?
+            </h4>
+        </div>
+        <button data-soru="6" data-cevap="4" type="button" class="btn btn-primary col-md-3 "><span class="glyphicon glyphicon-ok"></span>ÇOK İYİ</button>
+        <button data-soru="6" data-cevap="3" type="button" class="btn btn-success col-md-3"><span class="glyphicon glyphicon-ok-circle"></span>İYİ</button>
+        <button data-soru="6" data-cevap="2" type="button" class="btn btn-warning col-md-3"><span class="glyphicon glyphicon-remove"></span>KÖTÜ</button>
+        <button data-soru="6" data-cevap="1" type="button" class="btn btn-danger col-md-3"><span class="glyphicon glyphicon-exclamation-sign"></span>ÇOK KÖTÜ</button>
+        <div class="panel body">
+            <h4 style="text-align:center; padding-top:30px;" class="text-success">
+                Üniverstemiz ders konusunda beklentilerinizi karşılıyormu ?
+            </h4>
+        </div>
+        <button data-soru="7" data-cevap="4" type="button" class="btn btn-primary col-md-3 "><span class="glyphicon glyphicon-ok"></span>ÇOK İYİ</button>
+        <button data-soru="7" data-cevap="3" type="button" class="btn btn-success col-md-3"><span class="glyphicon glyphicon-ok-circle"></span>İYİ</button>
+        <button data-soru="7" data-cevap="2" type="button" class="btn btn-warning col-md-3"><span class="glyphicon glyphicon-remove"></span>KÖTÜ</button>
+        <button data-soru="7" data-cevap="1" type="button" class="btn btn-danger col-md-3"><span class="glyphicon glyphicon-exclamation-sign"></span>ÇOK KÖTÜ</button>
+        <div class="panel body">
+            <h4 style="text-align:center; padding-top:30px;" class="text-success">
+                Ders çalışmak için ders çalışma alanlarının yeterlimi ?
+            </h4>
+        </div>
+        <button data-soru="8" data-cevap="4" type="button" class="btn btn-primary col-md-3 "><span class="glyphicon glyphicon-ok"></span>ÇOK İYİ</button>
+        <button data-soru="8" data-cevap="3" type="button" class="btn btn-success col-md-3"><span class="glyphicon glyphicon-ok-circle"></span>İYİ</button>
+        <button data-soru="8" data-cevap="2" type="button" class="btn btn-warning col-md-3"><span class="glyphicon glyphicon-remove"></span>KÖTÜ</button>
+        <button data-soru="8" data-cevap="1" type="button" class="btn btn-danger col-md-3"><span class="glyphicon glyphicon-exclamation-sign"></span>ÇOK KÖTÜ</button>
+        <div class="panel body">
+            <h4 style="text-align:center; padding-top:30px;" class="text-success">
+                Okuldaki hocaların öğrencilerle olan ilişkisi nasıl ?
+            </h4>
+        </div>
+        <button data-soru="9" data-cevap="4" type="button" class="btn btn-primary col-md-3 "><span class="glyphicon glyphicon-ok"></span>ÇOK İYİ</button>
+        <button data-soru="9" data-cevap="3" type="button" class="btn btn-success col-md-3"><span class="glyphicon glyphicon-ok-circle"></span>İYİ</button>
+        <button data-soru="9" data-cevap="2" type="button" class="btn btn-warning col-md-3"><span class="glyphicon glyphicon-remove"></span>KÖTÜ</button>
+        <button data-soru="9" data-cevap="1" type="button" class="btn btn-danger col-md-3"><span class="glyphicon glyphicon-exclamation-sign"></span>ÇOK KÖTÜ</button>
+        <div class="panel body">
+            <h4 style="text-align:center; padding-top:30px;" class="text-success">
+                Okuldan mevzun oldukdan sonra sizce iş bulma olasılığınız yüzde kaç ?
+            </h4>
+        </div>
+        <button data-soru="10" data-cevap="4" type="button" class="btn btn-primary col-md-3 "><span class="glyphicon glyphicon-ok"></span>ÇOK İYİ</button>
+        <button data-soru="10" data-cevap="3" type="button" class="btn btn-success col-md-3"><span class="glyphicon glyphicon-ok-circle"></span>İYİ</button>
+        <button data-soru="10" data-cevap="2" type="button" class="btn btn-warning col-md-3"><span class="glyphicon glyphicon-remove"></span>KÖTÜ</button>
+        <button data-soru="10" data-cevap="1" type="button" class="btn btn-danger col-md-3"><span class="glyphicon glyphicon-exclamation-sign"></span>ÇOK KÖTÜ</button>
+    </div>
+</div>
+<ul class="pager " style="padding-top:25px;">
+    <li><a href="AnketBır">Geri</a></li>
+    <li><a href="AnketUc">İleri</a></li>
+</ul>

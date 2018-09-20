@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KullanicilerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Kısıler">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adı" Type="nvarchar" MaxLength="50" />
+    <Property Name="Soyadı" Type="nvarchar" MaxLength="50" />
+    <Property Name="Yas" Type="nvarchar" MaxLength="50" />
+    <Property Name="OkulID" Type="int" />
+  </EntityType>
+  <EntityType Name="OkulBlg">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OkulAdı" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK__Kısıler__OkulID__398D8EEE">
+    <End Role="OkulBlg" Type="Self.OkulBlg" Multiplicity="0..1" />
+    <End Role="Kısıler" Type="Self.Kısıler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OkulBlg">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Kısıler">
+        <PropertyRef Name="OkulID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KullanicilerModelStoreContainer">
+    <EntitySet Name="Kısıler" EntityType="Self.Kısıler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OkulBlg" EntityType="Self.OkulBlg" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Kısıler__OkulID__398D8EEE" Association="Self.FK__Kısıler__OkulID__398D8EEE">
+      <End Role="OkulBlg" EntitySet="OkulBlg" />
+      <End Role="Kısıler" EntitySet="Kısıler" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

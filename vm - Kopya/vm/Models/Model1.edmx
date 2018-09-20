@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="KullanicilerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Kisiler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OkulID" Type="int" />
+          <Property Name="OkulNo" Type="nvarchar" MaxLength="9" />
+        </EntityType>
+        <EntityType Name="OkulBlg">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OkulAdı" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SoruId" Type="int" />
+          <Property Name="CevapId" Type="int" />
+          <Property Name="AnketId" Type="nvarchar" MaxLength="50" />
+          <Property Name="OlusturmaTarihi" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__Kisiler__OkulID__3E52440B">
+          <End Role="OkulBlg" Type="Self.OkulBlg" Multiplicity="0..1" />
+          <End Role="Kisiler" Type="Self.Kisiler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OkulBlg">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Kisiler">
+              <PropertyRef Name="OkulID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KullanicilerModelStoreContainer">
+          <EntitySet Name="Kisiler" EntityType="Self.Kisiler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OkulBlg" EntityType="Self.OkulBlg" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table" EntityType="Self.Table" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Kisiler__OkulID__3E52440B" Association="Self.FK__Kisiler__OkulID__3E52440B">
+            <End Role="OkulBlg" EntitySet="OkulBlg" />
+            <End Role="Kisiler" EntitySet="Kisiler" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KullanicilerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Kisiler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OkulID" Type="Int32" />
+          <Property Name="OkulNo" Type="String" MaxLength="9" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OkulBlg" Relationship="Self.FK__Kisiler__OkulID__3E52440B" FromRole="Kisiler" ToRole="OkulBlg" />
+        </EntityType>
+        <EntityType Name="OkulBlg">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OkulAdı" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Kisiler" Relationship="Self.FK__Kisiler__OkulID__3E52440B" FromRole="OkulBlg" ToRole="Kisiler" />
+        </EntityType>
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SoruId" Type="Int32" />
+          <Property Name="CevapId" Type="Int32" />
+          <Property Name="AnketId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OlusturmaTarihi" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK__Kisiler__OkulID__3E52440B">
+          <End Role="OkulBlg" Type="Self.OkulBlg" Multiplicity="0..1" />
+          <End Role="Kisiler" Type="Self.Kisiler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OkulBlg">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Kisiler">
+              <PropertyRef Name="OkulID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KullanicilerEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Kisiler" EntityType="Self.Kisiler" />
+          <EntitySet Name="OkulBlg" EntityType="Self.OkulBlg" />
+          <EntitySet Name="Table" EntityType="Self.Table" />
+          <AssociationSet Name="FK__Kisiler__OkulID__3E52440B" Association="Self.FK__Kisiler__OkulID__3E52440B">
+            <End Role="OkulBlg" EntitySet="OkulBlg" />
+            <End Role="Kisiler" EntitySet="Kisiler" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KullanicilerModelStoreContainer" CdmEntityContainer="KullanicilerEntities3">
+          <EntitySetMapping Name="Kisiler">
+            <EntityTypeMapping TypeName="KullanicilerModel.Kisiler">
+              <MappingFragment StoreEntitySet="Kisiler">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OkulID" ColumnName="OkulID" />
+                <ScalarProperty Name="OkulNo" ColumnName="OkulNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OkulBlg">
+            <EntityTypeMapping TypeName="KullanicilerModel.OkulBlg">
+              <MappingFragment StoreEntitySet="OkulBlg">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OkulAdı" ColumnName="OkulAdı" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table">
+            <EntityTypeMapping TypeName="KullanicilerModel.Table">
+              <MappingFragment StoreEntitySet="Table">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SoruId" ColumnName="SoruId" />
+                <ScalarProperty Name="CevapId" ColumnName="CevapId" />
+                <ScalarProperty Name="AnketId" ColumnName="AnketId" />
+                <ScalarProperty Name="OlusturmaTarihi" ColumnName="OlusturmaTarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

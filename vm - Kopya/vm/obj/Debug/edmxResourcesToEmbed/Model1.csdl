@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KullanicilerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Kisiler">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OkulID" Type="Int32" />
+    <NavigationProperty Name="OkulBlg" Relationship="Self.FK__Kisiler__OkulID__3E52440B" FromRole="Kisiler" ToRole="OkulBlg" />
+    <Property Name="OkulNo" Type="String" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OkulBlg">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OkulAdı" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Kisiler" Relationship="Self.FK__Kisiler__OkulID__3E52440B" FromRole="OkulBlg" ToRole="Kisiler" />
+  </EntityType>
+  <Association Name="FK__Kisiler__OkulID__3E52440B">
+    <End Role="OkulBlg" Type="Self.OkulBlg" Multiplicity="0..1" />
+    <End Role="Kisiler" Type="Self.Kisiler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OkulBlg">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Kisiler">
+        <PropertyRef Name="OkulID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KullanicilerEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Kisiler" EntityType="Self.Kisiler" />
+    <EntitySet Name="OkulBlg" EntityType="Self.OkulBlg" />
+    <AssociationSet Name="FK__Kisiler__OkulID__3E52440B" Association="Self.FK__Kisiler__OkulID__3E52440B">
+      <End Role="OkulBlg" EntitySet="OkulBlg" />
+      <End Role="Kisiler" EntitySet="Kisiler" />
+    </AssociationSet>
+    <EntitySet Name="Table" EntityType="KullanicilerModel.Table" />
+  </EntityContainer>
+  <EntityType Name="Table">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SoruId" Type="Int32" />
+    <Property Name="CevapId" Type="Int32" />
+    <Property Name="AnketId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OlusturmaTarihi" Type="DateTime" Precision="3" />
+  </EntityType>
+</Schema>

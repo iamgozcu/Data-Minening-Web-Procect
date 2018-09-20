@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="KullanicilerModelStoreContainer" CdmEntityContainer="KullanicilerEntities">
+    <EntitySetMapping Name="Kısıler">
+      <EntityTypeMapping TypeName="KullanicilerModel.Kısıler">
+        <MappingFragment StoreEntitySet="Kısıler">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Adı" ColumnName="Adı" />
+          <ScalarProperty Name="Soyadı" ColumnName="Soyadı" />
+          <ScalarProperty Name="Yas" ColumnName="Yas" />
+          <ScalarProperty Name="OkulID" ColumnName="OkulID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OkulBlg">
+      <EntityTypeMapping TypeName="KullanicilerModel.OkulBlg">
+        <MappingFragment StoreEntitySet="OkulBlg">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="OkulAdı" ColumnName="OkulAdı" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

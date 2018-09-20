@@ -1,0 +1,156 @@
+﻿
+@{
+    ViewBag.Title = "AnketBır";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-warning">Anket Soruları-1</h1>
+<p class="jumbotron" style="background-color:antiquewhite;"><span class="glyphicon glyphicon-exclamation-sign">DİKKAT</span><br />Aşağıdaki soruları "Kesinlikle Katılıyorum" , "Katılıyorum" , "Katılmıyorum", "Kesinlikle Katılmıyorum" olacak şekilde lütfen butonlar yardımı ile seçebilirsin dostum.</p>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<style>
+    .active {
+    background:#000 !important;
+    color:#fff !important;
+    }
+</style>
+
+<script type="text/javascript">
+    $(function () {
+        $(".soru1 button").click(function () {
+            var soru = $(this).data("soru");
+            var cevap = $(this).data("cevap");
+            var auth = @DateTime.Now.ToString("dd-MM-yyyy-hh-mm-ss");
+            var hh = $(this).index();
+
+            $.ajax({
+                type: "POST",
+                url: "../Kısıler/SoruCevap",
+                data: '{soru:"' + soru + '", cevap : "' + cevap + '", auth : "'+ auth +'"}',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'JSON',
+                success: function (cevap) {
+                    if (cevap == 1) {
+                        $("body > div.container.body-content > div > div > button:nth-child("+(hh+1) +")").addClass("active");
+                    } else {
+                        alert("Bu soruya cevap verdiniz");
+                    }
+                }, error: function (cevap) {
+                    alert("Ajax isteği başarısız...");
+                }
+            });
+        })
+    });
+</script>
+
+<div class="panel panel-primary">
+    @*<div class="panel-heading">Anket Soruları</div>*@
+    <div class="soru1">
+        <div class="panel body">
+            <h4 style="text-align:center;" class="text-success padding-top:30px;">
+                Ders dışı zamanlarda sosyalleebileceğiniz,ortak etkinlikler
+                yürütebileceğiniz mekanlar sağlanıyormu ?
+            </h4>
+        </div>
+        <button data-soru="1" data-cevap="4" type="button" class="btn btn-primary col-lg-3 "><span class="glyphicon glyphicon-ok"></span>Kesinlikle Katılıyorum</button>
+        <button data-soru="1" data-cevap="3" type="button" class="btn btn-success col-lg-3"><span class="glyphicon glyphicon-ok-circle"></span>Katılıyorum</button>
+        <button data-soru="1" data-cevap="2" type="button" class="btn btn-warning col-lg-3"><span class="glyphicon glyphicon-remove"></span>Katılmıyorum</button>
+        <button data-soru="1" data-cevap="1" type="button" class="btn btn-danger col-lg-3"><span class="glyphicon glyphicon-exclamation-sign"></span>Kesinlikle Katılmıyorum</button>
+    
+        <div class="panel body">
+            <h4 style="text-align:center; padding-top:30px;" class="text-success">
+                Eğitim ortamlarının (derslik,tesis,donanım) yeterlilik düzeyindemi?
+            </h4>
+        </div>
+        <button data-soru="2" data-cevap="4" type="button" class="btn btn-primary col-lg-3 "><span class="glyphicon glyphicon-ok"></span>Kesinlikle Katılıyorum</button>
+        <button data-soru="2" data-cevap="3" type="button" class="btn btn-success col-lg-3"><span class="glyphicon glyphicon-ok-circle"></span>Katılıyorum</button>
+        <button data-soru="2" data-cevap="2" type="button" class="btn btn-warning col-lg-3"><span class="glyphicon glyphicon-remove"></span>Katılmıyorum</button>
+        <button data-soru="2" data-cevap="1" type="button" class="btn btn-danger col-lg-3"><span class="glyphicon glyphicon-exclamation-sign"></span>Kesinlikle Katılmıyorum</button>
+    
+        <div class="panel body">
+            <h4 style="text-align:center; padding-top:30px;" class="text-success">
+                Üniverste genelinde kafetarya/kantin hizmetlerinden memnunmusunuz ?
+            </h4>
+        </div>
+        <button data-soru="3" data-cevap="4" type="button" class="btn btn-primary col-lg-3 "><span class="glyphicon glyphicon-ok"></span>Kesinlikle Katılıyorum</button>
+        <button data-soru="3" data-cevap="3" type="button" class="btn btn-success col-lg-3"><span class="glyphicon glyphicon-ok-circle"></span>Katılıyorum</button>
+        <button data-soru="3" data-cevap="2" type="button" class="btn btn-warning col-lg-3"><span class="glyphicon glyphicon-remove"></span>Katılmıyorum</button>
+        <button data-soru="3" data-cevap="1" type="button" class="btn btn-danger col-lg-3"><span class="glyphicon glyphicon-exclamation-sign"></span>Kesinlikle Katılmıyorum</button>
+   
+   
+    <div class="panel body">
+        <h4 style="text-align:center; padding-top:30px;" class="text-success">
+            Uygulama derslerinin bizleri sektöre hazırlama düzeyindemi ?
+        </h4>
+    </div>
+    <button data-soru="4" data-cevap="4" type="button" class="btn btn-primary col-md-3 "><span class="glyphicon glyphicon-ok"></span>Kesinlikle Katılıyorum</button>
+    <button data-soru="4" data-cevap="3" type="button" class="btn btn-success col-md-3"><span class="glyphicon glyphicon-ok-circle"></span>Katılıyorum</button>
+    <button data-soru="4" data-cevap="2" type="button" class="btn btn-warning col-md-3"><span class="glyphicon glyphicon-remove"></span>Katılmıyorum</button>
+    <button data-soru="4" data-cevap="1" type="button" class="btn btn-danger col-md-3"><span class="glyphicon glyphicon-exclamation-sign"></span>Kesinlikle Katılmıyorum</button>
+    
+        <div class="panel body">
+            <h4 style="text-align:center; padding-top:30px;" class="text-success">
+                Öğretim görevlilerinin öğrencilere yönelik tutumları ?
+            </h4>
+        </div>
+        <button data-soru="5" data-cevap="4" type="button" class="btn btn-primary col-md-3 "><span class="glyphicon glyphicon-ok"></span>Kesinlikle Katılıyorum</button>
+        <button data-soru="5" data-cevap="3" type="button" class="btn btn-success col-md-3"><span class="glyphicon glyphicon-ok-circle"></span>Katılıyorum</button>
+        <button data-soru="5" data-cevap="2" type="button" class="btn btn-warning col-md-3"><span class="glyphicon glyphicon-remove"></span>Katılmıyorum</button>
+        <button data-soru="5" data-cevap="1" type="button" class="btn btn-danger col-md-3"><span class="glyphicon glyphicon-exclamation-sign"></span>Kesinlikle Katılmıyorum</button>
+
+        <div class="panel body">
+            <h4 style="text-align:center; padding-top:30px;" class="text-success">
+                Teknoloji,araç,gereç ve materyallerin yererliliği sizi tatmin ediyormu ?
+            </h4>
+        </div>
+        <button data-soru="6" data-cevap="4" type="button" class="btn btn-primary col-md-3 "><span class="glyphicon glyphicon-ok"></span>Kesinlikle Katılıyorum</button>
+        <button data-soru="6" data-cevap="3" type="button" class="btn btn-success col-md-3"><span class="glyphicon glyphicon-ok-circle"></span>Katılıyorum</button>
+        <button data-soru="6" data-cevap="2" type="button" class="btn btn-warning col-md-3"><span class="glyphicon glyphicon-remove"></span>Katılmıyorum</button>
+        <button data-soru="6" data-cevap="1" type="button" class="btn btn-danger col-md-3"><span class="glyphicon glyphicon-exclamation-sign"></span>Kesinlikle Katılmıyorum</button>
+
+        <div class="panel body">
+            <h4 style="text-align:center; padding-top:30px;" class="text-success">
+                Kütüphane de kullanılan kitaplar,bilgisayarlar,masalar , öğrenim durumnuz için yeterlimi ?
+            </h4>
+        </div>
+        <button data-soru="7" data-cevap="4" type="button" class="btn btn-primary col-md-3 "><span class="glyphicon glyphicon-ok"></span>Kesinlikle Katılıyorum</button>
+        <button data-soru="7" data-cevap="3" type="button" class="btn btn-success col-md-3"><span class="glyphicon glyphicon-ok-circle"></span>Katılıyorum</button>
+        <button data-soru="7" data-cevap="2" type="button" class="btn btn-warning col-md-3"><span class="glyphicon glyphicon-remove"></span>Katılmıyorum</button>
+        <button data-soru="7" data-cevap="1" type="button" class="btn btn-danger col-md-3"><span class="glyphicon glyphicon-exclamation-sign"></span>Kesinlikle Katılmıyorum</button>
+
+        <div class="panel body">
+            <h4 style="text-align:center; padding-top:30px;" class="text-success">
+                Mezuniyet sonrası kariyer şansımızı artırıcı uygulamalardan(staj,iş yeri,uzman konuklar vb.) aktiviteler yapılıyormu ?
+            </h4>
+        </div>
+        <button data-soru="8" data-cevap="4" type="button" class="btn btn-primary col-md-3 "><span class="glyphicon glyphicon-ok"></span>Kesinlikle Katılıyorum</button>
+        <button data-soru="8" data-cevap="3" type="button" class="btn btn-success col-md-3"><span class="glyphicon glyphicon-ok-circle"></span>Katılıyorum</button>
+        <button data-soru="8" data-cevap="2" type="button" class="btn btn-warning col-md-3"><span class="glyphicon glyphicon-remove"></span>Katılmıyorum</button>
+        <button data-soru="8" data-cevap="1" type="button" class="btn btn-danger col-md-3"><span class="glyphicon glyphicon-exclamation-sign"></span>Kesinlikle Katılmıyorum</button>
+
+        <div class="panel body">
+            <h4 style="text-align:center; padding-top:30px;" class="text-success">
+                Yönetimin sosyal etkinliklere önem verme dercesi nedir ?
+            </h4>
+        </div>
+        <button data-soru="9" data-cevap="4" type="button" class="btn btn-primary col-md-3 "><span class="glyphicon glyphicon-ok"></span>Kesinlikle Katılıyorum</button>
+        <button data-soru="9" data-cevap="3" type="button" class="btn btn-success col-md-3"><span class="glyphicon glyphicon-ok-circle"></span>Katılıyorum</button>
+        <button data-soru="9" data-cevap="2" type="button" class="btn btn-warning col-md-3"><span class="glyphicon glyphicon-remove"></span>Katılmıyorum</button>
+        <button data-soru="9" data-cevap="1" type="button" class="btn btn-danger col-md-3"><span class="glyphicon glyphicon-exclamation-sign"></span>Katılmıyorum</button>
+
+        <div class="panel body">
+            <h4 style="text-align:center; padding-top:30px;" class="text-success">
+                Üniverstenin güvenlik tedbirlerinin yeterliliğiniden memnunmusunuz ?
+            </h4>
+        </div>
+        <button data-soru="10" data-cevap="4" type="button" class="btn btn-primary col-md-3 "><span class="glyphicon glyphicon-ok"></span>Kesinlikle Katılıyorum</button>
+        <button data-soru="10" data-cevap="3" type="button" class="btn btn-success col-md-3"><span class="glyphicon glyphicon-ok-circle"></span>Katılıyorum</button>
+        <button data-soru="10" data-cevap="2" type="button" class="btn btn-warning col-md-3"><span class="glyphicon glyphicon-remove"></span>Kesinlikle Katılmıyorum</button>
+        <button data-soru="10" data-cevap="1" type="button" class="btn btn-danger col-md-3"><span class="glyphicon glyphicon-exclamation-sign"></span>Katılmıyorum</button>
+    </div>
+    
+
+    <ul class="pager" style="padding-top:25px;">
+        <li><a href="AnketIkı">İleri</a></li>
+    </ul>
+

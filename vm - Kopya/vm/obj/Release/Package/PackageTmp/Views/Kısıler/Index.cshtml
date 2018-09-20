@@ -1,0 +1,48 @@
+﻿@model IEnumerable<vm.Models.Kisiler>
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@ViewBag.HATA
+
+<table class="table table-hover table-bordered ">
+    <tr class="warning">
+
+        <td>
+            @Html.DisplayName("Okul Adı")
+        </td>
+        <td >
+            @Html.DisplayName("Okul Numarası")
+        </td>
+        
+    </tr>
+
+
+    @foreach (var item in Model)
+    {//bu döngü ile model içi ıtem da dönüyor if olsa dönmez o kadar
+        <tr class="success">
+
+            <td>
+                @Html.DisplayFor(modelItem => item.OkulBlg.OkulAdı)
+            </td>
+            <td>
+                <div style="margin-left:150px;">@Html.DisplayFor(modelItem => item.OkulNo)</div>
+            </td>
+        </tr>
+        
+
+
+    }
+</table>
+
+<div class="jumbotron" style="background-color:bisque">
+    <h1 class="display-4">Merhaba Dostum Yine Ben!</h1>
+    <p class="lead">Kayıt Olduğun İçin Teşekkürler Dostum</p>
+    <hr class="my-4">
+    <p>Aşağıdaki ankete başla butonuna basarak çok kısa olan soruları cevaplayarak yapacağım veri madenciliğini ödevime yardımıcı olabilirmisin. </p>
+    <p class="lead">
+        @Html.ActionLink("Ankete Başla", "AnketBır", "Anket" , new { } , new {@class= "btn btn-primary btn-lg" })
+        @*<a class="btn btn-primary btn-lg" href="/Views/Anket/AnketBır" role="button">Ankete Başla</a>*@
+    </p>
+</div>

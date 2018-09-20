@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KullanicilerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Kısıler">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adı" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Soyadı" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Yas" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OkulID" Type="Int32" />
+    <NavigationProperty Name="OkulBlg" Relationship="Self.FK__Kısıler__OkulID__398D8EEE" FromRole="Kısıler" ToRole="OkulBlg" />
+  </EntityType>
+  <EntityType Name="OkulBlg">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OkulAdı" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Kısıler" Relationship="Self.FK__Kısıler__OkulID__398D8EEE" FromRole="OkulBlg" ToRole="Kısıler" />
+  </EntityType>
+  <Association Name="FK__Kısıler__OkulID__398D8EEE">
+    <End Role="OkulBlg" Type="Self.OkulBlg" Multiplicity="0..1" />
+    <End Role="Kısıler" Type="Self.Kısıler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OkulBlg">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Kısıler">
+        <PropertyRef Name="OkulID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KullanicilerEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Kısıler" EntityType="Self.Kısıler" />
+    <EntitySet Name="OkulBlg" EntityType="Self.OkulBlg" />
+    <AssociationSet Name="FK__Kısıler__OkulID__398D8EEE" Association="Self.FK__Kısıler__OkulID__398D8EEE">
+      <End Role="OkulBlg" EntitySet="OkulBlg" />
+      <End Role="Kısıler" EntitySet="Kısıler" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

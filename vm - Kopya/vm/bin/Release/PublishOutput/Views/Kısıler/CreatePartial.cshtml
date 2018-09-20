@@ -1,0 +1,7 @@
+﻿@model vm.Models.OkulBlg
+
+
+<div class="col-md-4">
+    @Html.DropDownListFor(model => model.Id,
+        new SelectList(ViewBag.OkulID, "Id", "OkulAdı"), new { @class = "form-control" })
+</div>

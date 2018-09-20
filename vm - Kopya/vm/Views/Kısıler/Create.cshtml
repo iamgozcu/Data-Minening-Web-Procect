@@ -1,0 +1,78 @@
+﻿@model vm.Models.Kisiler
+
+@{
+    ViewBag.Title = "Create";
+
+}
+
+<div class="alert alert-danger">
+
+    @ViewData["Hata"]
+</div>
+
+<hr />
+<h2>Kullanıcı Oluşturma</h2>
+
+<div class="panel-body">
+    <div class="panel panel-primary" style="background-color:lightblue;">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal" style="padding-left:300px; margin-top:50px;">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.OkulNo, "OkulNo", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBox("OkulNo", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.OkulNo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.OkulID, "OkulID", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+
+                        @{Html.RenderAction("CreatePartial", "Kısıler");}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-success ort " />
+                        @*@Html.ActionLink("Kaydet", "Index", "Create", new { }, new { @class = "btn btn-success ort" })*@
+                        <style>
+                            .ort {
+                                width: 275px;
+                            }
+                        </style>
+
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
+<div class="img-circle">
+    <img src="~/İmages/1_UtZk5GuFemNQnssKs5wnig.png" style="width:1140px;" />
+</div>
+<img src="~/İmages/3.jpg" class="img-responsive pull-right" style="margin-right:-400px; margin-top:-700px; width:300px;height:800px;" />
+<img src="~/İmages/33.jpg" class="img-responsive pull-right" style="margin-right:1250px; margin-top:-700px; width:300px;height:800px;" />
+
+
+<div class="jumbotron" style="opacity:0.6; background-color:black; color:white;">
+    <h1 class="display-4">Selam Dostum !</h1>
+    <p class="lead">Ben Zeki arkadaşım Ramazan ile Arel Üniverstesinde aldığımız bitirme projesi için bize yardımcı olurmusun</p>
+    <hr class="my-4">
+    <span class="glyphicon glyphicon-exclamation-sign">HELPME</span>
+    <p>
+        Bana yardım etmen lazım , lütfen yukarıdaki bilgileri kutucuklara
+        gir ve ankete başlayarak projemi bitirmemde bana yardım edermisin ?
+    </p>
+
+</div>
+
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
